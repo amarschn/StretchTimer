@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
 
 				startTime = System.currentTimeMillis();
 				timerHandler.postDelayed(timerRunner, 0);
-				int i = 1;
+				// Test
 			}
 		});
 
