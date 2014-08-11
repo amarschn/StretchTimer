@@ -62,6 +62,7 @@ public class MainActivity extends Activity {
 				TextView stretchText = (TextView) findViewById(R.id.stretchName);
 				stretchText.setText(getRandomStretch());
 
+				/* Start the timer again */
 				startTime = System.currentTimeMillis();
 				timerHandler.postDelayed(timerRunner, 0);
 			}
