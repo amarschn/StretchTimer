@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="stretches_array">
+        <item>@string/third_world_squat</item>
+        <item>@string/fetal_stretch</item>
+        <item>@string/left_back_stretch</item>
+        <item>@string/right_back_stretch</item>
+        <item>@string/butterfly</item>
+        <item>@string/table</item>
+        <item>@string/swim_stretch</item>
+        <item>@string/illiotibial_band_stretch</item>
+    </string-array>
+</resources>
