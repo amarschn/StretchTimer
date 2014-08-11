@@ -34,7 +34,6 @@ public class MainActivity extends Activity {
 			timerTextView.setText(String.format("%d:%02d", minutes, seconds));
 			// Add the timer to the run queue
 			timerHandler.postDelayed(this, 0);
-			// test whatevasdf
 		}
 	};
 
