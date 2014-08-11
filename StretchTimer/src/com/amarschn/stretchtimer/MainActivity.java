@@ -16,6 +16,7 @@ public class MainActivity extends Activity {
 
 	private Button startButton;
 	private TextView timerTextView;
+	private TextView stretchText;
 	private String[] stretches;
 	private long startTime = 0;
 
@@ -26,14 +27,20 @@ public class MainActivity extends Activity {
 		@Override
 		public void run() {
 			// Run the timer based on system time
-			long milliseconds = System.currentTimeMillis() - startTime;
-			int seconds = (int) (milliseconds / 1000);
+			long timeSinceStart = System.currentTimeMillis() - startTime;
+			int seconds = (int) (timeSinceStart / 1000);
 			int minutes = seconds / 60;
 			seconds = seconds % 60;
 			// Set the text view
-			timerTextView.setText(String.format("%d:%02d", minutes, seconds));
+			timerTextView.setText(String.format("%02d:%02d:%02d", minutes,
+					seconds, timeSinceStart % 10));
 			// Add the timer to the run queue
-			timerHandler.postDelayed(this, 0);
+			timerHandler.postDelayed(this, 100);
+
+			if (seconds > 30) {
+				startTime = System.currentTimeMillis();
+				stretchText.setText(getRandomStretch());
+			}
 		}
 	};
 
@@ -47,7 +54,10 @@ public class MainActivity extends Activity {
 
 		/* Set the timer */
 		timerTextView = (TextView) findViewById(R.id.timerView);
-		timerTextView.setText("0:00");
+		timerTextView.setText(R.string.zero_time);
+
+		/* Set the stretch text view */
+		stretchText = (TextView) findViewById(R.id.stretchName);
 
 		/* Set the button listener */
 		startButton = (Button) findViewById(R.id.button1);
@@ -59,7 +69,7 @@ public class MainActivity extends Activity {
 				 * Reset the text in the text field below the button to
 				 * something
 				 */
-				TextView stretchText = (TextView) findViewById(R.id.stretchName);
+
 				stretchText.setText(getRandomStretch());
 
 				/* Start the timer again */
