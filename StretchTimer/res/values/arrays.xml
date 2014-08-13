@@ -9,5 +9,9 @@
         <item>@string/table</item>
         <item>@string/swim_stretch</item>
         <item>@string/illiotibial_band_stretch</item>
+        <item>@string/runner_stretch_left</item>
+        <item>@string/runner_stretch_right</item>
+        <item>@string/warrior_one_left</item>
+        <item>@string/warrior_one_right</item>
     </string-array>
 </resources>
