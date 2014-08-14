@@ -72,20 +72,21 @@ public class MainActivity extends Activity {
 		/* Set the stretch text view */
 		stretchText = (TextView) findViewById(R.id.stretchName);
 		stretchText.setText(R.string.stretch_type);
+
 		/* Set the button listener */
 		startButton = (Button) findViewById(R.id.button1);
 		startButton.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
+
+				/* Reset the stretches to perform */
+				stretchesToDo = getRandomStretchList(5).iterator();
 				/*
 				 * Reset the text in the text field below the button to
 				 * something
 				 */
 				stretchText.setText(stretchesToDo.next());
-
-				/* Reset the stretches to perform */
-				stretchesToDo = getRandomStretchList(5).iterator();
 
 				/* Start the timer */
 				startTime = System.currentTimeMillis();
