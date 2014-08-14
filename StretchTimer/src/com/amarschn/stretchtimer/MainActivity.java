@@ -2,13 +2,14 @@ package com.amarschn.stretchtimer;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Set;
 
 import android.app.Activity;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,7 +24,7 @@ public class MainActivity extends Activity {
 	private String[] allStretches;
 	private Iterator<String> stretchesToDo;
 	private long startTime = 0;
-	private MediaPlayer stretchChangeAlert;
+	private TextToSpeech tts;
 
 	/* The timer thread and handler */
 	Handler timerHandler = new Handler();
@@ -49,12 +50,22 @@ public class MainActivity extends Activity {
 			if (seconds > 5) {
 				if (stretchesToDo.hasNext()) {
 					startTime = System.currentTimeMillis();
-					stretchText.setText(stretchesToDo.next());
-					stretchChangeAlert.start();
+					String nextStretch = stretchesToDo.next();
+					/* Speak the next stretch */
+					tts.speak(nextStretch, TextToSpeech.QUEUE_FLUSH, null);
+					stretchText.setText(nextStretch);
 				} else {
 					timerHandler.removeCallbacks(timerRunner);
 					timerTextView.setText(R.string.zero_time);
 					stretchText.setText(R.string.stretch_type);
+					/*
+					 * Let the user know they are done with their stretch
+					 * routine
+					 */
+					tts.speak(
+							getResources().getString(
+									R.string.finished_stretches),
+							TextToSpeech.QUEUE_FLUSH, null);
 				}
 			}
 		}
@@ -75,9 +86,15 @@ public class MainActivity extends Activity {
 		/* Set the stretch text view */
 		stretchText = (TextView) findViewById(R.id.stretchName);
 		stretchText.setText(R.string.stretch_type);
-		/* Set the notification every time the stretch type is changed */
-		stretchChangeAlert = MediaPlayer.create(this,
-				android.provider.Settings.System.DEFAULT_NOTIFICATION_URI);
+
+		/* Text to speech implementation, sets the language to English */
+		tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+
+			@Override
+			public void onInit(int status) {
+				tts.setLanguage(Locale.US);
+			}
+		});
 
 		/* Set the button listener */
 		startButton = (Button) findViewById(R.id.button1);
@@ -89,10 +106,12 @@ public class MainActivity extends Activity {
 				/* Reset the stretches to perform */
 				stretchesToDo = getRandomStretchList(5).iterator();
 				/*
-				 * Reset the text in the text field below the button to
-				 * something
+				 * Reset the text in the text field below the button to the
+				 * first stretch, and then speak it aloud
 				 */
-				stretchText.setText(stretchesToDo.next());
+				String firstStretch = stretchesToDo.next();
+				stretchText.setText(firstStretch);
+				tts.speak(firstStretch, TextToSpeech.QUEUE_FLUSH, null);
 
 				/* Start the timer */
 				startTime = System.currentTimeMillis();
