@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
 			 * move on to the next stretch. If there is no stretch, set the
 			 * clock back to zero.
 			 */
-			if (seconds > 5) {
+			if (seconds > 45) {
 				if (stretchesToDo.hasNext()) {
 					startTime = System.currentTimeMillis();
 					String nextStretch = stretchesToDo.next();
@@ -67,6 +67,11 @@ public class MainActivity extends Activity {
 									R.string.finished_stretches),
 							TextToSpeech.QUEUE_FLUSH, null);
 				}
+			}
+			/* Tell the user to switch sides if necessary */
+			if (seconds == 45 / 2) {
+				tts.speak(getResources().getString(R.string.switch_sides),
+						TextToSpeech.QUEUE_FLUSH, null);
 			}
 		}
 	};
@@ -104,7 +109,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 
 				/* Reset the stretches to perform */
-				stretchesToDo = getRandomStretchList(5).iterator();
+				stretchesToDo = getRandomStretchList(8).iterator();
 				/*
 				 * Reset the text in the text field below the button to the
 				 * first stretch, and then speak it aloud

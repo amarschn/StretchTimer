@@ -3,15 +3,12 @@
     <string-array name="stretches_array">
         <item>@string/third_world_squat</item>
         <item>@string/fetal_stretch</item>
-        <item>@string/left_back_stretch</item>
-        <item>@string/right_back_stretch</item>
+        <item>@string/back_twist</item>
         <item>@string/butterfly</item>
         <item>@string/table</item>
         <item>@string/swim_stretch</item>
         <item>@string/illiotibial_band_stretch</item>
-        <item>@string/runner_stretch_left</item>
-        <item>@string/runner_stretch_right</item>
-        <item>@string/warrior_one_left</item>
-        <item>@string/warrior_one_right</item>
+        <item>@string/runner_stretch</item>
+        <item>@string/warrior_one</item>
     </string-array>
 </resources>

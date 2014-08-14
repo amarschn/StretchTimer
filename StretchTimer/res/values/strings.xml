@@ -6,16 +6,16 @@
     <string name="finished_stretches">Finished Stretches</string>
     <string name="zero_time">00:00</string>
     <string name="action_settings">Settings</string>
+    <string name="switch_sides">Switch Sides</string>
+    
+    <!-- Stretches -->
     <string name="third_world_squat">Third World Squat</string>
     <string name="fetal_stretch">Fetal Stretch</string>
-    <string name="left_back_stretch">Left Back Stretch</string>
-    <string name="right_back_stretch">Right Back Stretch</string>
+    <string name="back_twist">Back Twist</string>
     <string name="butterfly">Butterfly Stretch</string>
     <string name="table">Table</string>
     <string name="swim_stretch">Swim Stretch</string>
     <string name="illiotibial_band_stretch">Illiotibial Band Stretch</string>
-    <string name="runner_stretch_left">Runner\'s Stretch Left Side</string>
-    <string name="runner_stretch_right">Runner\'s Stretch Right Side</string>
-    <string name="warrior_one_left">Warrior One Left Leg</string>
-    <string name="warrior_one_right">Warrior One Right Leg</string>
+    <string name="runner_stretch">Runner\'s Stretch</string>
+    <string name="warrior_one">Warrior One</string>
 </resources>
