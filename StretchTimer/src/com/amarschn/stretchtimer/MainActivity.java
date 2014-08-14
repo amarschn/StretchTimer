@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Set;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
 	private String[] allStretches;
 	private Iterator<String> stretchesToDo;
 	private long startTime = 0;
+	private MediaPlayer stretchChangeAlert;
 
 	/* The timer thread and handler */
 	Handler timerHandler = new Handler();
@@ -48,6 +50,7 @@ public class MainActivity extends Activity {
 				if (stretchesToDo.hasNext()) {
 					startTime = System.currentTimeMillis();
 					stretchText.setText(stretchesToDo.next());
+					stretchChangeAlert.start();
 				} else {
 					timerHandler.removeCallbacks(timerRunner);
 					timerTextView.setText(R.string.zero_time);
@@ -72,6 +75,9 @@ public class MainActivity extends Activity {
 		/* Set the stretch text view */
 		stretchText = (TextView) findViewById(R.id.stretchName);
 		stretchText.setText(R.string.stretch_type);
+		/* Set the notification every time the stretch type is changed */
+		stretchChangeAlert = MediaPlayer.create(this,
+				android.provider.Settings.System.DEFAULT_NOTIFICATION_URI);
 
 		/* Set the button listener */
 		startButton = (Button) findViewById(R.id.button1);
