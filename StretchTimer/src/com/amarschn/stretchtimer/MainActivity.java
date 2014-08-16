@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
 	private Iterator<String> stretchesToDo;
 	private long startTime = 0;
 	private TextToSpeech tts;
-	private int stretchTime = 10;
+	private int stretchTime = 45;
 
 	/* The timer thread and handler */
 	Handler timerHandler = new Handler();
@@ -121,7 +121,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 
 				/* Reset the stretches to perform */
-				stretchesToDo = getRoutine(2, 1).iterator();
+				stretchesToDo = getRoutine(5, 2).iterator();
 				/*
 				 * Reset the text in the text field below the button to the
 				 * first stretch, and then speak it aloud
