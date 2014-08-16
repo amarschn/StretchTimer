@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="stretches_array">
-        <item>@string/third_world_squat</item>
         <item>@string/fetal_stretch</item>
         <item>@string/back_twist</item>
         <item>@string/butterfly</item>
-        <item>@string/table</item>
-        <item>@string/swim_stretch</item>
         <item>@string/illiotibial_band_stretch</item>
         <item>@string/runner_stretch</item>
+        <item>@string/downward_dog</item>
+        <item>@string/child_pose</item>
+    </string-array>
+    
+    <string-array name="exercises_array">
+        <item>@string/third_world_squat</item>
+        <item>@string/table</item>
+        <item>@string/swim_stretch</item>
         <item>@string/warrior_one</item>
+        <item>@string/runner_pose</item>
+        <item>@string/plank</item>
     </string-array>
 </resources>

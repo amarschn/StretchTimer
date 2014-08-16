@@ -23,9 +23,11 @@ public class MainActivity extends Activity {
 	private TextView timerTextView;
 	private TextView stretchText;
 	private String[] allStretches;
+	private String[] allExercises;
 	private Iterator<String> stretchesToDo;
 	private long startTime = 0;
 	private TextToSpeech tts;
+	private int stretchTime = 10;
 
 	/* The timer thread and handler */
 	Handler timerHandler = new Handler();
@@ -48,7 +50,7 @@ public class MainActivity extends Activity {
 			 * move on to the next stretch. If there is no stretch, set the
 			 * clock back to zero.
 			 */
-			if (seconds > 45) {
+			if (seconds > stretchTime) {
 				if (stretchesToDo.hasNext()) {
 					startTime = System.currentTimeMillis();
 					String nextStretch = stretchesToDo.next();
@@ -56,9 +58,6 @@ public class MainActivity extends Activity {
 					tts.speak(nextStretch, TextToSpeech.QUEUE_FLUSH, null);
 					stretchText.setText(nextStretch);
 				} else {
-					timerHandler.removeCallbacks(timerRunner);
-					timerTextView.setText(R.string.zero_time);
-					stretchText.setText(R.string.stretch_type);
 					/*
 					 * Let the user know they are done with their stretch
 					 * routine
@@ -67,10 +66,15 @@ public class MainActivity extends Activity {
 							getResources().getString(
 									R.string.finished_stretches),
 							TextToSpeech.QUEUE_FLUSH, null);
+					/* End the timer */
+					timerHandler.removeCallbacks(timerRunner);
+					timerTextView.setText(R.string.zero_time);
+					stretchText.setText(R.string.stretch_type);
+
 				}
 			}
 			/* Tell the user to switch sides if necessary */
-			if (seconds == 45 / 2) {
+			if (seconds == stretchTime / 2) {
 				tts.speak(getResources().getString(R.string.switch_sides),
 						TextToSpeech.QUEUE_FLUSH, null);
 			}
@@ -85,8 +89,12 @@ public class MainActivity extends Activity {
 		/* Set the screen to stay on while app is running */
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-		/* Set the stretches array, and set the number of stretches to do */
+		/*
+		 * Set the stretches and exercises array, and set the number of
+		 * stretches and exercises to do
+		 */
 		allStretches = getResources().getStringArray(R.array.stretches_array);
+		allExercises = getResources().getStringArray(R.array.exercises_array);
 
 		/* Set the timer */
 		timerTextView = (TextView) findViewById(R.id.timerView);
@@ -113,7 +121,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 
 				/* Reset the stretches to perform */
-				stretchesToDo = getRandomStretchList(8).iterator();
+				stretchesToDo = getRoutine(2, 1).iterator();
 				/*
 				 * Reset the text in the text field below the button to the
 				 * first stretch, and then speak it aloud
@@ -142,16 +150,32 @@ public class MainActivity extends Activity {
 	}
 
 	/**
+	 * @return a random string from the exercises array resource
+	 */
+	private String getRandomExercise() {
+		/* Get random integer for index */
+		Random rand = new Random();
+		int range = allExercises.length;
+		int randIndex = rand.nextInt(range);
+		return allExercises[randIndex];
+	}
+
+	/**
 	 * @param numStretches
 	 *            : The number of stretches that will be returned
 	 * @returna list of (semi)random stretches
 	 */
-	private Set<String> getRandomStretchList(int numStretches) {
+	private Set<String> getRoutine(int numStretches, int numExercises) {
 		Set<String> stretches = new HashSet<String>();
 		/* Add random stretches to the set until you have the number requested */
-		while (stretches.size() < numStretches) {
+		for (int i = 0; i < numStretches; i++) {
 			String stretch = getRandomStretch();
 			stretches.add(stretch);
+		}
+		/* Add random exercises to the set until you have the number requested */
+		for (int i = 0; i < numExercises; i++) {
+			String exercise = getRandomExercise();
+			stretches.add(exercise);
 		}
 		return stretches;
 	}

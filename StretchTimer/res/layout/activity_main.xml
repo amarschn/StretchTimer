@@ -24,7 +24,6 @@
         android:layout_below="@+id/button1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:text="TextView"
         android:textSize="@dimen/LargeText" />
 
     <TextView
@@ -34,7 +33,15 @@
         android:layout_below="@+id/stretchName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
-        android:text="TextView"
         android:textSize="@dimen/LargeText" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timerView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/fetal_stretch" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ package com.amarschn.stretchtimer;
 
 public final class R {
     public static final class array {
+        public static final int exercises_array=0x7f040001;
         public static final int stretches_array=0x7f040000;
     }
     public static final class attr {
@@ -26,11 +27,13 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int fetal_stretch=0x7f020000;
+        public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f090003;
+        public static final int action_settings=0x7f090004;
         public static final int button1=0x7f090000;
+        public static final int imageView1=0x7f090003;
         public static final int stretchName=0x7f090001;
         public static final int timerView=0x7f090002;
     }
@@ -45,16 +48,20 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int back_twist=0x7f060009;
         public static final int butterfly=0x7f06000a;
+        public static final int child_pose=0x7f060013;
+        public static final int downward_dog=0x7f060011;
         public static final int fetal_stretch=0x7f060008;
         public static final int finished_stretches=0x7f060003;
         public static final int illiotibial_band_stretch=0x7f06000d;
+        public static final int plank=0x7f060012;
+        public static final int runner_pose=0x7f060010;
         public static final int runner_stretch=0x7f06000e;
         public static final int start_button=0x7f060001;
         public static final int stretch_type=0x7f060002;
         public static final int swim_stretch=0x7f06000c;
         public static final int switch_sides=0x7f060006;
         public static final int table=0x7f06000b;
-        /**  Stretches 
+        /**  Stretches and Exercises 
          */
         public static final int third_world_squat=0x7f060007;
         public static final int warrior_one=0x7f06000f;
